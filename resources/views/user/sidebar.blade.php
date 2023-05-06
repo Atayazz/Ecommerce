@@ -15,6 +15,9 @@
 
             </x-app-layout>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{url('showcart')}} ">Cart[{{$count}}]</a>
+        </li>
         @else
         <li><a class="nav-link" href="{{ route('login') }}">Log in</a></li>
 
@@ -36,9 +39,6 @@
             <a class="nav-link click-scroll" href="#section_3">Services</a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link click-scroll" href="#section_4">Price List</a>
-        </li>
     </ul>
 </div>
 </nav>

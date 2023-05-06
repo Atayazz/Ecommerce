@@ -10,7 +10,7 @@
                     <br>
                     <a class="btn custom-btn custom-border-btn custom-btn-bg-white smoothscroll me-2 mb-2" href="#section_2">About Us</a>
 
-                    <a class="btn custom-btn smoothscroll mb-2" href="#section_3">What we do</a>
+                    <a class="btn custom-btn smoothscroll mb-2" href="#section_3">Products</a>
                 </div>
             </div>
         </div>
@@ -33,11 +33,11 @@
                     <h2 class="mb-4">Best hairdressers</h2>
 
                     <div class="border-bottom pb-3 mb-5">
-                        <p>Gentlemen's Barber Shop is new Bootstrap v5 HTML CSS template by <a href="https://templatemo.com/page/1" target="_blank">TemplateMo</a> for everyone. There is a sidebar menu to navigate the one-page layout. You can feel free to adapt this template for your business.</p>
+                        <p>Skateboard website was founded by skateboard enthusiasts in 2005. Our goal is to promote and develop skateboard culture, offer products that meet the needs of skateboarders, and provide our customers with the highest quality service. Customer satisfaction is always our top priority, so we carefully select all of our products and offer them at the most reasonable prices <a href="https://templatemo.com/page/1" target="_blank"></a> </p>
                     </div>
                 </div>
 
-                <h6 class="mb-5">Meet Babers</h6>
+                <h6 class="mb-5">Brands</h6>
 
                 <div class="col-lg-5 col-12 custom-block-bg-overlay-wrap me-lg-5 mb-5 mb-lg-0">
                     <img src="images/barber/portrait-male-hairdresser-with-scissors.jpg" class="custom-block-bg-overlay-image img-fluid" alt="">
@@ -106,38 +106,33 @@
         </div>
     </section>
 
-
     <section class="services-section section-padding" id="section_3">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-lg-12 col-12">
-                    <h2 class="mb-5">Products</h2>
-                </div>
-                <form action="{{url('search')}}" method="get" class="form-inline">
-                    @csrf
-                    <div class="col-md-12" style="margin-bottom:5%;" align="center">
-                        <input class="form-control" type="search" name="search" placeholder="Ara" style="border:1pt solid #ed563b; ">
-                        <input type="submit" value="Ara" class="btn btn-success">
-                    </div>
-                </form>
-                @foreach($data as $product)
-                <div class="col-lg-6 col-12 mb-4">
-                    <div class="services-thumb" style="background-color: #D6A354;">
-                        <img src="/productimage/{{$product->image}}" style="max-height: 250px !important;" class="services-image img-fluid" alt="">
-
-                        <div class="services-info d-flex align-items-end">
-                            <h4 class="mb-0">{{$product->title}}</h4>
-
-                            <strong class="services-thumb-price">${{$product->price}}</strong>
-                        </div>
-                    </div>
-                </div>
-                
-                @endforeach
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-12">
+                <h2 class="mb-5">PRODUCTS</h2>
             </div>
+            @foreach($data as $product)
+            <div class="col-lg-6 col-12 mb-4">
+                <div class="services-thumb" style="background-color: #D6A354;">
+                    <img src="/productimage/{{$product->image}}" style="max-height: 250px !important;" class="services-image img-fluid" alt="">
+                    <div class="services-info d-flex align-items-end">
+                        <h4 class="mb-0">{{$product->title}}</h4>
+                        <strong class="services-thumb-price my-1">${{$product->price}}</strong>
+                        <form action="{{url('addcart',$product->id)}}" method="post">
+                            @csrf
+                            <input class="btn btn-secondary" type="submit" value="Add to Cart">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            @endforeach
         </div>
-    </section>
+        <div class="main-button text-center">
+            <a href="{{url('products')}}">All Products</a>
+        </div>
+    </div>
+</section>
 
     <section class="booking-section section-padding" id="booking-section">
         <div class="container">
@@ -309,3 +304,4 @@
             </div>
         </div>
     </section>
+</div>

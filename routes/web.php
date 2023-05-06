@@ -36,4 +36,8 @@ route::post('/addproduct',[AdminController::class,'addproduct']);
 route::get('/deleteproduct/{id}',[AdminController::class,'deleteproduct']);
 route::get('/updateview/{id}',[AdminController::class,'updateview']);
 route::post('/updateproduct/{id}',[AdminController::class,'updateproduct']);
+route::get('/products',[HomeController::class,'products']);
+route::post('/addcart/{id}',[HomeController::class,'addcart']);
+route::get('/showcart', [HomeController::class,'showcart']);
+route::get('/delete/{id}',[HomeController::class,'delete']);
 
