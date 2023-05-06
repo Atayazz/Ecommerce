@@ -21,6 +21,7 @@
   data-assets-path="admin/assets/"
   data-template="vertical-menu-template-free"
 ><head>
+    <base href="/public">
     @include('admin.head')
 </head>
 
@@ -45,6 +46,7 @@
 
                 </div>
           <!-- Content wrapper -->
+
           <div class="container-fluid">
                 <div class="container" align="center">
                     <h1 class="title">Ürün Ekle</h1>
@@ -54,27 +56,31 @@
                         {{session()->get('message')}}
                     </div>
                     @endif
-                    <form action="{{url('addproduct')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{url('updateproduct', $data->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div style="padding:1%">
-                            <label>Ürün Başlığı</label>
-                            <input class="form-control" type="text" name="title" placeholder="Ürün başlığı girin:" required="">
+                            <label>Product Title</label>
+                            <input class="form-control" type="text" name="title" value="{{$data->title}}" required="">
                         </div>
                         <div style="padding:1%">
-                            <label>Fiyat</label>
-                            <input class="form-control" type="number" name="price" placeholder="Ürün fiyatı girin:" required="">
+                            <label>Price</label>
+                            <input class="form-control" type="number" name="price" value="{{$data->price}}" required="">
                         </div>
                         <div style="padding:1%">
-                            <label>Açıklama</label>
-                            <input class="form-control" type="text" name="desc" placeholder="Ürün açıklaması girin:" required="">
+                            <label>Description</label>
+                            <input class="form-control" type="text" name="desc" value="{{$data->description}}" required="">
                         </div>
                         <div style="padding:1%">
-                            <label>Adet</label>
-                            <input class="form-control" type="number" name="quantity" placeholder="Ürün adedi girin:" required="">
+                            <label>Quantity</label>
+                            <input class="form-control" type="number" name="quantity" value="{{$data->quantity}}" required="">
+                        </div>
+                        <div>
+                            <label>Old Image</label>
+                            <img src="/productimage/{{$data->image}}">
                         </div>
                         <div style="padding:1%">
-                            <label>Ürün Fotoğrafı</label>
-                            <input class="form-control" type="file" id="img" name="file" required="">
+                            <label>New Image</label>
+                            <input class="form-control" type="file" id="img" name="file" value="{{$data->title}}" required="">
                             <img height="80" width="80" id="preview" class="center">
                         </div>
                         <div style="padding:1%">

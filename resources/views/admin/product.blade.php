@@ -46,13 +46,13 @@
            
            <div class="container" align="center">
 
-                <h1 style="color:blue; padding-top: 25px; font-size: 25px;">Add Products</h1>
+                <h1 style="color:blue; padding-top: 25px; font-size: 25px;">Products</h1>
 
                 </div>
           <!-- Content wrapper -->
           <div class="container-fluid">
                 <div class="container" align="center">
-                    <h1 class="title">Ürün Ekle</h1>
+                    <h1 class="title">Ürün Bilgileri</h1>
                     @if(session()->has('message'))
                     <div class="alert alert-success">
                         <button type="button" class="close" data-dismiss="alert">x</button>

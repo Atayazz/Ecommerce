@@ -49,7 +49,6 @@ class AdminController extends Controller
 
     public function updateproduct(Request $request, $id){
         $data = product::find($id);
-        $data = new product;
         $image = $request->file;
         $imagename = time() . '.' . $image->getClientOriginalExtension();
         $request->file->move('productimage',$imagename);
