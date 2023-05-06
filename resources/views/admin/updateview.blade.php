@@ -20,8 +20,7 @@
   data-theme="theme-default"
   data-assets-path="admin/assets/"
   data-template="vertical-menu-template-free"
->
-<head>
+><head>
     @include('admin.head')
 </head>
 
@@ -37,10 +36,6 @@
           <!-- Navbar -->
 @include('admin.navbar')
           <!-- / Navbar -->
-
-          <!-- Content wrapper -->
-          <div class="content-wrapper">
-            <!-- Content -->
            
            <div class="container-fluid page-body-wrapper">
            
@@ -59,33 +54,46 @@
                         {{session()->get('message')}}
                     </div>
                     @endif
-                    <table>
-                        <tr>
-                            <td style="padding: 60px;">Title</td>
-                            <td style="padding: 60px;">Description</td>
-                            <td style="padding: 60px;">Quantity</td>
-                            <td style="padding: 60px;">Price</td>
-                            <td style="padding: 60px;">Image</td>
-                            <td style="padding: 60px;">Update</td>
-                            <td style="padding: 60px;">Delete</td>
-                        </tr>
-                        @foreach($data as $product)
-                        <tr align="center">
-                            <td style="padding: 60px;">{{$product->title}}</td>
-                            <td style="padding: 60px;">{{$product->description}}</td>
-                            <td style="padding: 60px;">{{$product->quantity}}</td>
-                            <td style="padding: 60px;">{{$product->price}}</td>
-                            <td style="padding: 60px;"><img height="100" width="100" src="/productimage/{{$product->image}}"></td>
-                            <td style="padding: 60px;"><a class="btn btn-success" href="{{url('updateview',$product->id)}}">Update</a></td>
-                            <td style="padding: 60px;"><a class="btn btn-danger" onclick="return confirm('Are you sure delete this product?')" href="{{url('deleteproduct',$product->id)}}">Delete</a></td>
-                        </tr>
-                        @endforeach
-                    </table>
+                    <form action="{{url('addproduct')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div style="padding:1%">
+                            <label>Ürün Başlığı</label>
+                            <input class="form-control" type="text" name="title" placeholder="Ürün başlığı girin:" required="">
+                        </div>
+                        <div style="padding:1%">
+                            <label>Fiyat</label>
+                            <input class="form-control" type="number" name="price" placeholder="Ürün fiyatı girin:" required="">
+                        </div>
+                        <div style="padding:1%">
+                            <label>Açıklama</label>
+                            <input class="form-control" type="text" name="desc" placeholder="Ürün açıklaması girin:" required="">
+                        </div>
+                        <div style="padding:1%">
+                            <label>Adet</label>
+                            <input class="form-control" type="number" name="quantity" placeholder="Ürün adedi girin:" required="">
+                        </div>
+                        <div style="padding:1%">
+                            <label>Ürün Fotoğrafı</label>
+                            <input class="form-control" type="file" id="img" name="file" required="">
+                            <img height="80" width="80" id="preview" class="center">
+                        </div>
+                        <div style="padding:1%">
+                            <input class="btn btn-success" type="submit" name="submit">
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- / Content -->
 
             <!-- Footer -->
 @include('admin.footer')
+<script>
+                img.onchange = evt => {
+                    const [file] = img.files
+                    if (file) {
+                        preview.src = URL.createObjectURL(file)
+                    }
+                }
+            </script>
   </body>
 </html>

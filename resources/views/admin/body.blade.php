@@ -1,8 +1,5 @@
-<!-- Content wrapper -->
-<div class="content-wrapper">
-            <!-- Content -->
 
-            <div class="container-xxl flex-grow-1 container-p-y">
+<div class="container-xxl flex-grow-1 container-p-y">
               <div class="row">
                 <div class="col-lg-8 mb-4 order-0">
                   <div class="card">
@@ -350,6 +347,8 @@
                     </div>
                   </div>
                 </div>
+                <!--/ Order Statistics -->
+
                 <!-- Expense Overview -->
                 <div class="col-md-6 col-lg-4 order-1 mb-4">
                   <div class="card h-100">

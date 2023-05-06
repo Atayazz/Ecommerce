@@ -21,7 +21,9 @@
   data-assets-path="admin/assets/"
   data-template="vertical-menu-template-free"
 >
-  @include('admin.head')
+<head>
+    @include('admin.head')
+</head>
 
   <body>
     <!-- Layout wrapper -->
@@ -39,7 +41,6 @@
           <!-- Content wrapper -->
           <div class="content-wrapper">
             <!-- Content -->
-@include('admin.body')
             <!-- / Content -->
 
             <!-- Footer -->
