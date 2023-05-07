@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Auth\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
@@ -38,8 +40,10 @@ class HomeController extends Controller
     }
 
     public function products(){
+        $user = auth()->user();
         $data = product::all();
-        return view('user.allproducts', compact('data'));
+        $count = cart::where('phone',$user->phone)->count();
+        return view('user.allproducts', compact('data','count'));
     }
 
     public function addcart($id){
@@ -71,5 +75,44 @@ class HomeController extends Controller
         $data = cart::find($id);
         $data->delete();
         return redirect()->back()->with('message','This Product deleted successfully');
+    }
+    public function confirmorder(Request $request){
+        $user=auth()->user();
+        $name=$user->name;
+        $phone=$user->phone;
+        $address=$user->address;
+        foreach($request->title as $key=>$title)
+        {
+            $order=new order;
+            $order->title=$request->title[$key];
+            $order->price=$request->price[$key];
+            $order->quantity=$request->quantity[$key];
+            $order->name=$name;
+            $order->phone=$phone;
+            $order->address=$address;
+            $order->status="Order Confirmed";
+
+            $order->save();
+
+        }
+        DB::table('carts')->where('phone',$phone)->delete();
+        return redirect()->back()->with('message','Order confirmed successfully');
+    }
+    public function order(){
+        $user = auth()->user();
+        $orders = order::where('phone',$user->phone)->get();
+        $count = cart::where('phone',$user->phone)->count();
+
+        return view('user.orders', compact('orders','count'));
+         
+    }
+    public function productdetail($id){
+        $user = auth()->user();
+        $product = product::find($id);
+        if(Auth::id()){
+            $count = cart::where('phone', $user->phone)->count();
+            return view('user.productdetail', compact('product','count'));
+        }
+        return view('user.productdetail',compact('product'));
     }
 }

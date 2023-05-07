@@ -40,4 +40,11 @@ route::get('/products',[HomeController::class,'products']);
 route::post('/addcart/{id}',[HomeController::class,'addcart']);
 route::get('/showcart', [HomeController::class,'showcart']);
 route::get('/delete/{id}',[HomeController::class,'delete']);
+route::get('/order', [HomeController::class,'confirmorder']);
+route::get('/showorder', [AdminController::class,'showorder']);
+route::get('/updatestatus/{id}', [AdminController::class,'updatestatus']);
+route::get('/cancelstatus/{id}', [AdminController::class,'cancelstatus']);
+route::get('/order',[HomeController::class,'order']);
+route::get('/productdetail/{id}',[HomeController::class,'productdetail']);
+
 

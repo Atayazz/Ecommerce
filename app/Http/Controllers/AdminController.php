@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
@@ -59,5 +60,26 @@ class AdminController extends Controller
         $data->quantity = $request->quantity;
         $data->save();
         return redirect()->back()->with('message','Product updated successfully');
+    }
+    public function showorder ()
+    {
+        $order = order::where('order_status', null)->get();
+        return view('admin.showorder', compact('order'));
+    }
+    public function updatestatus($id){
+        $order = order::find($id);
+        $order->status = "Delivered";
+        $order->order_status = true;
+        $order->save();
+
+        return redirect()->back();
+    }
+    public function cancelstatus($id){
+        $order = order::find($id);
+        $order->status = "Order Cancelled";
+        $order->order_status = false;
+        $order->save();
+
+        return redirect()->back();
     }
 }

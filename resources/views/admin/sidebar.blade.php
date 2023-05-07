@@ -97,7 +97,7 @@
               
             </li>
             <li class="menu-item">
-              <a href="{{url('orders')}}" class="menu-link">
+              <a href="{{url('showorder')}}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-cube-alt" href="orders.blade.php"></i>
                 <div data-i18n="Misc">Orders</div>
               </a>
