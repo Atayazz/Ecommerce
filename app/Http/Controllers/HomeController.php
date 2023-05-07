@@ -42,8 +42,11 @@ class HomeController extends Controller
     public function products(){
         $user = auth()->user();
         $data = product::all();
-        $count = cart::where('phone',$user->phone)->count();
-        return view('user.allproducts', compact('data','count'));
+        if(Auth::id()){
+            $count = cart::where('phone', $user->phone)->count();
+            return view('user.allproducts', compact('data','count'));
+        }
+        return view('user.allproducts', compact('data'));
     }
 
     public function addcart($id){
