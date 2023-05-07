@@ -3,7 +3,7 @@
 
 <div class="position-sticky sidebar-sticky d-flex flex-column justify-content-center align-items-center">
     <a class="navbar-brand" href="{{url('')}}">
-        <img src="images/templatemo-barber-logo.png" class="logo-image img-fluid" align="">
+        <img src="images/aaas.jpeg" class="logo-image img-fluid" align="">
     </a>
 
     <ul class="nav flex-column">

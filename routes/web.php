@@ -46,5 +46,7 @@ route::get('/updatestatus/{id}', [AdminController::class,'updatestatus']);
 route::get('/cancelstatus/{id}', [AdminController::class,'cancelstatus']);
 route::get('/order',[HomeController::class,'order']);
 route::get('/productdetail/{id}',[HomeController::class,'productdetail']);
+route::get('/confirmorder',[HomeController::class,'confirmorder']);
+route::get('/cancelorder/{id}',[HomeController::class,'cancelorder']);
 
 

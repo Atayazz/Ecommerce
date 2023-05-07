@@ -73,7 +73,7 @@
 
         <ul class="order-list">
           @foreach($orders as $order)
-          @if($order->status == "Sipariş Alındı")
+          @if($order->status == "Order Confirmed")
           <li class="order-item">
             <div class="order-item-header">
               <h2>Order {{$order->id}}</h2>
@@ -90,7 +90,7 @@
               {{$order->price}} $
             </div>
             <div class="order-item-buttons">
-              <button>Cancel Order</button>
+              <a href="{{url('cancelorder', $order->id)}}">Cancel Order</a>
             </div>
           </li>
           @elseif($order->status == "Delivered")
@@ -109,10 +109,6 @@
               <h2>Total </h2>
               {{$order->price}} $
             </div>
-            <div class="order-item-buttons">
-              <button>Inspect</button> &nbsp &nbsp
-              <a href="{{url('productdetail',$order->product_id)}}">Order Again</a>
-            </div>
           </li>
           @elseif($order->status == "Order Cancelled")
           <li class="order-item">
@@ -129,10 +125,6 @@
             <div class="order-item-total">
               <h2>Total </h2>
               {{$order->price}} $
-            </div>
-            <div class="order-item-buttons">
-              <button>Inspect</button> &nbsp &nbsp
-              <a href="{{url('productdetail',$order->product_id)}}">Order Again</a>
             </div>
           </li>
           @endif

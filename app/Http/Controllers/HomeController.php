@@ -68,8 +68,11 @@ class HomeController extends Controller
     public function showcart(){
         $user = auth()->user();
         $cart = cart::where('phone',$user->phone)->get();
-        $count = cart::where('phone',$user->phone)->count();
-        return view('user.cart', compact('cart','count'));
+        $count = cart::where('phone',$user->phone)->count();$total = 0;
+        foreach ($cart as $price) {
+            $total += $price->price;
+        }
+        return view('user.cart', compact('cart','count','total'));
     }
     public function delete($id){
         $data = cart::find($id);
@@ -81,10 +84,10 @@ class HomeController extends Controller
         $name=$user->name;
         $phone=$user->phone;
         $address=$user->address;
-        foreach($request->title as $key=>$title)
+        foreach($request->productname as $key=>$productname)
         {
             $order=new order;
-            $order->title=$request->title[$key];
+            $order->title=$request->productname[$key];
             $order->price=$request->price[$key];
             $order->quantity=$request->quantity[$key];
             $order->name=$name;
@@ -114,5 +117,12 @@ class HomeController extends Controller
             return view('user.productdetail', compact('product','count'));
         }
         return view('user.productdetail',compact('product'));
+    }
+    public function cancelorder($id){
+        $order=order::find($id);
+        $order->status = "Order Cancelled";
+        $order->order_status = false;
+        $order->save();
+        return redirect()->back()->with('message','Order cancelled successfully');
     }
 }
