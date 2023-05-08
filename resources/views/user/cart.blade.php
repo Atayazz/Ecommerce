@@ -40,7 +40,7 @@
                       <tr>
                         <td class="p-4">
                           <div class="media align-items-center">
-                            <img src="public/productimage/{{$item->image}}" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                            <img src="productimage/{{$item->image}}" class="d-block ui-w-40 ui-bordered mr-4" alt="">
                             <div class="media-body">
                               <a href="#" class="d-block text-dark">{{$item->title}}<input type="text" name="productname[]" value="{{$item->title}}" hidden></a>
                             </div>
